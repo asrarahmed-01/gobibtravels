@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 14, "column": 0}, "map": {"version":3,"sources":["file:///Users/asrarahmed/Downloads/React/gobibtrtavels/gobibtravels/src/app/tours/page.tsx"],"sourcesContent":["import React from \"react\";\n\n\n\n export default function Tours () {\n\nreturn(\n    <>\n      < section\n        className=\" relative h-96 bg-cover bg-center flex items-center \"\n        style={{backgroundImage:`url('/bg-image.jpeg')`}}>\n            < div className=\"absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent\" />\n        <div className=\"relative z-10 text-left\">\n          <h1 className=\"text-4xl md:text-7xl text-left px-20 font-bold text-white drop-shadow-2xl\">\n            Tours Packages\n          </h1>\n          <div className=\"w-20 h-1 bg-orange-500 mx-auto mt-4 rounded-full\" />\n        </div>\n      </section>\n\n      \n      </>\n);\n };"],"names":[],"mappings":";;;;;;AAIgB,SAAS;IAEzB,qBACI;kBACE,cAAA,8OAAE;YACA,WAAU;YACV,OAAO;gBAAC,iBAAgB,CAAC,qBAAqB,CAAC;YAAA;;8BAC3C,8OAAE;oBAAI,WAAU;;;;;;8BACpB,8OAAC;oBAAI,WAAU;;sCACb,8OAAC;4BAAG,WAAU;sCAA4E;;;;;;sCAG1F,8OAAC;4BAAI,WAAU;;;;;;;;;;;;;;;;;;;AAOxB","debugId":null}}]
+}
