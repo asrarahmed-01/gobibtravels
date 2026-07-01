@@ -316,15 +316,12 @@ const toursSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$
     },
     extraReducers: (builder)=>{
         builder.addCase(fetchTours, (state)=>{
-            console.log('🛫 SLICE: fetchTours Triggered');
             state.loading = true;
             state.error = null;
         }).addCase(fetchToursSuccess, (state, action)=>{
-            console.log('🛬 SLICE: fetchToursSuccess with', action.payload.length, 'tours');
             state.loading = false;
             state.tours = action.payload;
         }).addCase(fetchToursFailure, (state, action)=>{
-            console.log('💥 SLICE: fetchToursFailure with error', action.payload);
             state.loading = false;
             state.error = action.payload;
         });
@@ -466,17 +463,14 @@ const blogsSlice = (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$
     },
     extraReducers: (builder)=>{
         builder.addCase(fetchBlogs, (state)=>{
-            console.log('SLICE: fetchBlogs triggered');
             state.loading = true;
             state.error = null;
         }).addMatcher((action)=>action.type === 'blogs/fetchBlogsSuccess', (state, action)=>{
-            console.log('SLICE: fetchBlogsSuccess →', action.payload.length, 'blogs');
             state.loading = false;
             state.blogs = [
                 ...action.payload
             ];
         }).addMatcher((action)=>action.type === 'blogs/fetchBlogsFailure', (state, action)=>{
-            console.log('SLICE: fetchBlogsFailure →', action.payload);
             state.loading = false;
             state.error = action.payload;
         });

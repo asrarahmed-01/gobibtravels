@@ -34,17 +34,14 @@ const toursSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTours, (state) => {
-        console.log('🛫 SLICE: fetchTours Triggered')
         state.loading = true
         state.error = null
       })
       .addCase(fetchToursSuccess, (state, action: PayloadAction<Tour[]>) => {
-            console.log('🛬 SLICE: fetchToursSuccess with', action.payload.length, 'tours')
         state.loading = false
         state.tours = action.payload
       })
       .addCase(fetchToursFailure, (state, action: PayloadAction<string>) => {
-        console.log('💥 SLICE: fetchToursFailure with error', action.payload)
         state.loading = false
         state.error = action.payload
       })

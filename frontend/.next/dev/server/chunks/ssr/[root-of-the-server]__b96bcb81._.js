@@ -146,7 +146,7 @@ const Footer = ()=>{
                                                     columnNumber: 11
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                    href: "/about",
+                                                    href: "/blogs",
                                                     className: "text-white hover:text-orange-400 transition transform hover:scale-105 ",
                                                     children: "Blog"
                                                 }, void 0, false, {
@@ -161,15 +161,6 @@ const Footer = ()=>{
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
                                                     lineNumber: 36,
-                                                    columnNumber: 11
-                                                }, ("TURBOPACK compile-time value", void 0)),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
-                                                    href: "/faq",
-                                                    className: "text-white hover:text-orange-400 transition transform hover:scale-105",
-                                                    children: "FAQ"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                    lineNumber: 37,
                                                     columnNumber: 11
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
@@ -191,7 +182,7 @@ const Footer = ()=>{
                                             children: "Attractions"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                            lineNumber: 41,
+                                            lineNumber: 40,
                                             columnNumber: 12
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
@@ -209,18 +200,18 @@ const Footer = ()=>{
                                                     children: attraction
                                                 }, attraction, false, {
                                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                    lineNumber: 44,
+                                                    lineNumber: 43,
                                                     columnNumber: 12
                                                 }, ("TURBOPACK compile-time value", void 0)))
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                            lineNumber: 42,
+                                            lineNumber: 41,
                                             columnNumber: 9
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                    lineNumber: 40,
+                                    lineNumber: 39,
                                     columnNumber: 9
                                 }, ("TURBOPACK compile-time value", void 0)),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -230,7 +221,7 @@ const Footer = ()=>{
                                             children: "Address"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                            lineNumber: 50,
+                                            lineNumber: 49,
                                             columnNumber: 11
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -239,20 +230,20 @@ const Footer = ()=>{
                                                 " gobib Travels Pvt Ltd ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                    lineNumber: 52,
+                                                    lineNumber: 51,
                                                     columnNumber: 76
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 " 123 Travel Lane, Suite 100 ",
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                    lineNumber: 52,
+                                                    lineNumber: 51,
                                                     columnNumber: 109
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 " Cityville, ST 12345"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                            lineNumber: 52,
+                                            lineNumber: 51,
                                             columnNumber: 11
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -260,7 +251,7 @@ const Footer = ()=>{
                                             children: " Email: info@gobibtravels.com"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                            lineNumber: 53,
+                                            lineNumber: 52,
                                             columnNumber: 11
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -268,7 +259,7 @@ const Footer = ()=>{
                                             children: " Phone: +1 (234) 567-8901"
                                         }, void 0, false, {
                                             fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                            lineNumber: 54,
+                                            lineNumber: 53,
                                             columnNumber: 11
                                         }, ("TURBOPACK compile-time value", void 0)),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -281,12 +272,12 @@ const Footer = ()=>{
                                                         className: "w-5 h-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                        lineNumber: 57,
+                                                        lineNumber: 56,
                                                         columnNumber: 14
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                    lineNumber: 56,
+                                                    lineNumber: 55,
                                                     columnNumber: 13
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -296,12 +287,12 @@ const Footer = ()=>{
                                                         className: "w-5 h-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                        lineNumber: 60,
+                                                        lineNumber: 59,
                                                         columnNumber: 14
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                    lineNumber: 59,
+                                                    lineNumber: 58,
                                                     columnNumber: 13
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -311,12 +302,12 @@ const Footer = ()=>{
                                                         className: "w-5 h-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                        lineNumber: 63,
+                                                        lineNumber: 62,
                                                         columnNumber: 15
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                    lineNumber: 62,
+                                                    lineNumber: 61,
                                                     columnNumber: 13
                                                 }, ("TURBOPACK compile-time value", void 0)),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -326,24 +317,24 @@ const Footer = ()=>{
                                                         className: "w-5 h-5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                        lineNumber: 66,
+                                                        lineNumber: 65,
                                                         columnNumber: 15
                                                     }, ("TURBOPACK compile-time value", void 0))
                                                 }, void 0, false, {
                                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                                    lineNumber: 65,
+                                                    lineNumber: 64,
                                                     columnNumber: 13
                                                 }, ("TURBOPACK compile-time value", void 0))
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                            lineNumber: 55,
+                                            lineNumber: 54,
                                             columnNumber: 11
                                         }, ("TURBOPACK compile-time value", void 0))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                                    lineNumber: 49,
+                                    lineNumber: 48,
                                     columnNumber: 9
                                 }, ("TURBOPACK compile-time value", void 0))
                             ]
@@ -361,7 +352,7 @@ const Footer = ()=>{
                             ]
                         }, void 0, true, {
                             fileName: "[project]/frontend/src/app/Components/Footer.tsx",
-                            lineNumber: 71,
+                            lineNumber: 70,
                             columnNumber: 10
                         }, ("TURBOPACK compile-time value", void 0))
                     ]

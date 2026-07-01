@@ -32,9 +32,8 @@ const Footer: React.FC = () => {
           <a href="/" className="text-white hover:text-orange-400 transition transform hover:scale-105">Home</a> 
           <a href="/about" className="text-white hover:text-orange-400 transition transform hover:scale-105">About us</a> 
           <a href="/gallery" className="text-white hover:text-orange-400 transition transform hover:scale-105">Gallery</a>
-          <a href="/about" className="text-white hover:text-orange-400 transition transform hover:scale-105 ">Blog</a> 
+          <a href="/blogs" className="text-white hover:text-orange-400 transition transform hover:scale-105 ">Blog</a> 
           <a href="/contact" className="text-white hover:text-orange-400 transition transform hover:scale-105">Contact us</a>
-          <a href="/faq" className="text-white hover:text-orange-400 transition transform hover:scale-105">FAQ</a>
           </ul>
         </div>
         <div>

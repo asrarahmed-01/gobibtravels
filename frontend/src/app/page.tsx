@@ -1,55 +1,52 @@
 
 "use client";
-import React, { use } from "react";
+import React, { useState } from "react";
 import TourPack from "./Components/tourpack";
 import HomeCard from "./Components/HomeCard";
+import ErrorBanner from "./Components/ErrorBanner";
 import {  Facebook,Youtube,Instagram,Twitter, ArrowRight } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { fetchHomeCards } from "@/lib/slices/homeSlice";
+import { fetchTours } from "@/lib/slices/toursSlice";
 import { useRouter } from "next/navigation";
-
-
-  interface CardData {
-    id: string;
-    title: string;
-    description: string;
-    link: string;
-    
-  }
-  const tours =[
-     {
-            image: "https://plus.unsplash.com/premium_photo-1697729914552-368899dc4757?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZHViYWl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900",
-            title: "Dubai Package",
-            description: "Dubai, in the United Arab Emirates, is a dynamic city known for its modern architecture, luxury shopping, vibrant nightlife, and desert landscapes. Tour packages for Dubai cater to a diverse range of interests and preferences.",
-        },
-
-        {
-            image: "https://images.unsplash.com/photo-1507840771025-26e8ececa04c?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGV1cm9wZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&q=60&w=900",
-            title: "Europe Package",
-            description: "Europe offers a wide range of experiences, from historical cities to picturesque countryside, charming villages, and stunning coastlines.",
-        },
-
-        {
-            image: "https://images.unsplash.com/photo-1544644181-1484b3fdfc62?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGJhbGl8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&q=60&w=900",
-            title: "Bali Package",
-            description: "Bali, Indonesia, is a popular tourist destination known for its beautiful beaches, rich culture, stunning landscapes, and vibrant nightlife. Tour packages for Bali typically offer a range of options to suit different preferences and budgets.",
-        },
-        {
-            image: "https://plus.unsplash.com/premium_photo-1697730373939-3ebcaa9d295e?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2luZ2Fwb3JlfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=900",
-            title: "Singapore Package",
-            description: "Singapore is a vibrant city-state known for its modern skyline, diverse culture, delicious cuisine, and numerous attractions.",
-        },
-  ]
-
-
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const { homeCards, loading: homeLoading } = useAppSelector((state) => state.home);
+  const { homeCards, loading: homeLoading, error: homeError } = useAppSelector((state) => state.home);
+  const { tours, loading: toursLoading, error: toursError } = useAppSelector((state) => state.tours);
+
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
   React.useEffect(() => {
     dispatch(fetchHomeCards());
+    dispatch(fetchTours());
   }, [dispatch]);
- const router = useRouter();
+
+  const featuredTours = tours.slice(0, 4);
+
+  const router = useRouter();
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) {
+      setNewsletterStatus("error");
+      return;
+    }
+    setNewsletterStatus("submitting");
+    try {
+      await addDoc(collection(db, "newsletterSubscribers"), {
+        email: newsletterEmail.trim(),
+        subscribedAt: serverTimestamp(),
+      });
+      setNewsletterStatus("success");
+      setNewsletterEmail("");
+    } catch (error) {
+      setNewsletterStatus("error");
+    }
+  };
     
   return (
     <>
@@ -59,6 +56,7 @@ export default function Home() {
       <p className="text-lg mb-6">
         Explore the world with gobib Travels - Your gateway to unforgettable journeys and adventures.
       </p>
+     {homeError && <ErrorBanner message={homeError} onRetry={() => dispatch(fetchHomeCards())} />}
      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
   {homeLoading ? (
     <>
@@ -87,18 +85,27 @@ export default function Home() {
 
        <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
-            {tours.map((attraction, index) => (
-              <TourPack
-                key={index}
-                image={attraction.image}
-                title={attraction.title}
-                description={attraction.description}
-                
-                
-              />
-            ))}
-          </div>
+          {toursError && <ErrorBanner message={toursError} onRetry={() => dispatch(fetchTours())} />}
+          {toursLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+              {[1, 2, 3, 4].map((index) => (
+                <div key={index} className="animate-pulse bg-gray-200 h-48 rounded-lg" />
+              ))}
+            </div>
+          ) : featuredTours.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+              {featuredTours.map((tour) => (
+                <TourPack
+                  key={tour.id}
+                  image={tour.image}
+                  title={tour.title}
+                  description={tour.description}
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-gray-500 py-12">No packages available right now.</p>
+          )}
         </div>
         </section>
       
@@ -158,22 +165,36 @@ export default function Home() {
           <span className='text-darkblue-500'>Weekly Deals</span>
         </h2>
 
-        <div className='flex flex-col gap-6 max-w-2xl mx-auto '>
-         
-          <input
-            type="email"
-            placeholder="Email"
-            className="w-full px-10 py-6 text-2xl text-orange-600 placeholder-orange-400 bg-transparent border-2 border-orange-400 rounded-none focus:outline-none focus:border-orange-600 transition"
-             style={{ borderRadius: '0px'}}
-             />
-            
-             
-          <button
-            className=" group relative w-full  py-5 bg-orange-500 text-white font-bold text-2xl uppercase tracking-wider hover:bg-orange-600 transition-all duration-300 flex items-center justify-center gap=3 transform hover:scale-105">
-            SUBSCRIBE
-            <ArrowRight className='w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ' />
-            
-          </button>
+        <form onSubmit={handleNewsletterSubmit} className='flex flex-col gap-6 max-w-2xl mx-auto '>
+
+          {newsletterStatus === "success" ? (
+            <p className="text-orange-600 font-semibold text-xl">You're subscribed! Watch your inbox for weekly deals.</p>
+          ) : (
+            <>
+              {newsletterStatus === "error" && (
+                <p className="text-red-600 font-semibold text-sm">Please enter a valid email address.</p>
+              )}
+              <input
+                type="email"
+                placeholder="Email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                required
+                className="w-full px-10 py-6 text-2xl text-orange-600 placeholder-orange-400 bg-transparent border-2 border-orange-400 rounded-none focus:outline-none focus:border-orange-600 transition"
+                 style={{ borderRadius: '0px'}}
+                 />
+
+
+              <button
+                type="submit"
+                disabled={newsletterStatus === "submitting"}
+                className=" group relative w-full  py-5 bg-orange-500 text-white font-bold text-2xl uppercase tracking-wider hover:bg-orange-600 disabled:opacity-60 transition-all duration-300 flex items-center justify-center gap-3 transform hover:scale-105">
+                {newsletterStatus === "submitting" ? "SUBSCRIBING..." : "SUBSCRIBE"}
+                <ArrowRight className='w-8 h-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ' />
+
+              </button>
+            </>
+          )}
            <div className="flex justify-center gap-6 mt-12">
             <a href="#" className="w-16 h-16 bg-white rounded-full flex items-center justify-center hover:shadow-xl transition-shadow">
               <Facebook className="w-8 h-8 text-gray-800" />
@@ -188,7 +209,7 @@ export default function Home() {
               <Youtube className="w-8 h-8 text-gray-800" />
             </a>
             </div>
-          </div>
+          </form>
           </div>
 
      </div>    

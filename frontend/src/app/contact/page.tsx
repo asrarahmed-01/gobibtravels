@@ -1,8 +1,57 @@
+"use client";
 
-import React from "react";
-import { Phone,Mail,MapPin,Send,Facebook,Twitter,Youtube, Instagram} from "lucide-react";
+import React, { useState } from "react";
+import { Phone, Mail, MapPin, Send, Facebook, Twitter, Youtube, Instagram, CheckCircle2 } from "lucide-react";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+
+interface ContactFormState {
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
+
+const initialForm: ContactFormState = { name: "", phone: "", email: "", message: "" };
 
 export default function ContactPage() {
+  const [form, setForm] = useState<ContactFormState>(initialForm);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setStatus("error");
+      setErrorMessage("Please fill in your name, email, and message.");
+      return;
+    }
+
+    setStatus("submitting");
+    setErrorMessage(null);
+
+    try {
+      await addDoc(collection(db, "contactMessages"), {
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        email: form.email.trim(),
+        message: form.message.trim(),
+        submittedAt: serverTimestamp(),
+      });
+      setStatus("success");
+      setForm(initialForm);
+    } catch (error) {
+      setStatus("error");
+      setErrorMessage("Something went wrong sending your message. Please try again.");
+    }
+  };
+
   return (
 
      <>
@@ -12,7 +61,7 @@ export default function ContactPage() {
           </h1>
         </div>
     <section
-      className="relative h-screen bg-cover bg-center flex items-center py-20"
+      className="relative min-h-screen bg-cover bg-center flex items-center py-20"
       style={{
         backgroundImage: "url('https://images.unsplash.com/photo-1489516408517-0c0a15662682?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3174')",
       }}
@@ -25,36 +74,76 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
         
           <div className="lg:col-span-2">
-            <form className="bg-white/10 backdrop-transparent rounded-2xl border border-white/20">
-              <div className="space-y-6">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="w-full px-6 py-4 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
-                />
-                <input
-                  type="text"
-                  placeholder="Contact Number"
-                  className="w-full px-6 py-4 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
-                />
-                <input
-                  type="email"
-                  placeholder="Email Address"
-                  className="w-full px-6 py-4 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
-                />
-                <textarea
-                  placeholder="Message"
-                  rows={5}
-                  className="w-full px-6 py-4 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition resize-none"
-                />
+            {status === "success" ? (
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 p-10 text-center text-white">
+                <CheckCircle2 className="w-12 h-12 text-orange-400 mx-auto mb-4" />
+                <h3 className="text-2xl font-bold mb-2">Message sent</h3>
+                <p className="text-sm text-gray-200 mb-6">
+                  Thanks for reaching out — our team will get back to you shortly.
+                </p>
                 <button
-                  type="submit"
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg transition transform hover:scale-105"
+                  onClick={() => setStatus("idle")}
+                  className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg transition"
                 >
-                  SEND MESSAGE
+                  Send another message
                 </button>
               </div>
-            </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="bg-white/10 backdrop-transparent rounded-2xl border border-white/20">
+                <div className="space-y-6">
+                  {status === "error" && errorMessage && (
+                    <div className="bg-red-500/20 border border-red-400/50 text-red-100 text-sm rounded-lg px-4 py-3">
+                      {errorMessage}
+                    </div>
+                  )}
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    value={form.name}
+                    onChange={handleChange}
+                    className="w-full px-6 py-4 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                  />
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Contact Number"
+                    value={form.phone}
+                    onChange={handleChange}
+                    className="w-full px-6 py-4 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    value={form.email}
+                    onChange={handleChange}
+                    className="w-full px-6 py-4 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition"
+                  />
+                  <textarea
+                    name="message"
+                    placeholder="Message"
+                    rows={5}
+                    value={form.message}
+                    onChange={handleChange}
+                    className="w-full px-6 py-4 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-400 transition resize-none"
+                  />
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-4 rounded-lg transition transform hover:scale-105 flex items-center justify-center gap-2"
+                  >
+                    {status === "submitting" ? (
+                      "SENDING..."
+                    ) : (
+                      <>
+                        SEND MESSAGE <Send className="w-4 h-4" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
 
         

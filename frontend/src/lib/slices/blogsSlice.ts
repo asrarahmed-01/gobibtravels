@@ -36,7 +36,6 @@ const blogsSlice = createSlice({
     builder
       
       .addCase(fetchBlogs, (state) => {
-        console.log('SLICE: fetchBlogs triggered')
         state.loading = true
         state.error = null
       })
@@ -44,17 +43,14 @@ const blogsSlice = createSlice({
         (action): action is PayloadAction<Blog[]> =>
           action.type === 'blogs/fetchBlogsSuccess',
         (state, action) => {
-          console.log('SLICE: fetchBlogsSuccess →', action.payload.length, 'blogs')
           state.loading = false
           state.blogs = [...action.payload]
         }
       )
-
       .addMatcher(
         (action): action is PayloadAction<string> =>
           action.type === 'blogs/fetchBlogsFailure',
         (state, action) => {
-          console.log('SLICE: fetchBlogsFailure →', action.payload)
           state.loading = false
           state.error = action.payload
         }

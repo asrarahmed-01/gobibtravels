@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { fetchBlogs } from "@/lib/slices/blogsSlice";
 import BlogCard from "../Components/BlogCard";
+import ErrorBanner from "../Components/ErrorBanner";
 
 export default function Blogs() {
   const dispatch = useAppDispatch();
-  const { blogs, loading: blogsLoading } = useAppSelector(
+  const { blogs, loading: blogsLoading, error: blogsError } = useAppSelector(
     (state) => state.blogs
   );
 
@@ -36,6 +37,10 @@ export default function Blogs() {
             What Our Travelers Say
           </h2>
 
+          {blogsError && (
+            <ErrorBanner message={blogsError} onRetry={() => dispatch(fetchBlogs())} />
+          )}
+
           {blogsLoading ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[1, 2, 3, 4, 5, 6].map((index) => (
@@ -45,12 +50,14 @@ export default function Blogs() {
                 ></div>
               ))}
             </div>
-          ) : (
+          ) : blogs.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {blogs.map((blog) => (
                 <BlogCard key={blog.id} review={blog} />
               ))}
             </div>
+          ) : (
+            <p className="text-center text-gray-500 py-12">No reviews yet.</p>
           )}
         </div>
       </section>
